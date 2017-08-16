@@ -1,7 +1,9 @@
 /**
- * @author SCaffrey (srius.caffrey@gmail.com)
- * @copyright MIT
+ * @authors Ir1d (sirius.caffrey@gmail.com)
+ * @date    2017-08-16 17:08:02
+ * @license Star And Thank Author
  */
+
 #include <cstdio>// NOLINT
 #include <cstring>// NOLINT
 #include <cmath>// NOLINT
@@ -25,27 +27,42 @@ typedef long long LL;// NOLINT
 typedef long double real;
 
 const double INF = 1e100;
-const int oo = ~0u >> 2;c
+const int oo = ~0u >> 2;
 const double pi = acos(-1.0);
 const double EPS = 1e-8;
 const int MAXN = 100033;
 
-int v;
-int a, b;
+int a[25], b[25], c[233];
+int t, n, p, num;
+int idx, sta[233];
 int main() {
 #ifdef LOCAL
   freopen("a.in", "r", stdin);
   freopen("a.out", "w", stdout);
 #endif
 
-  while (~scanf("%d%d", &a, &b)) {
-    if (b > a * 4) v = 10 * a - 2 * b;
-    else if (2 * b > 3 * a) v = 8 * a - 4 * b;
-    else if (3 * b > 2 * a) v = 6 * a - 6 * b;
-    else if (4 * b > a) v = 3 * a - 9 * b;
-    else v = -12 * b;
-    if (v <= 0) puts("Deficit");
-    else printf("%d\n", v);
+  scanf("%d", &t);
+  while (t--) {
+    num = 0;
+    scanf("%d", &n);
+    a[0] = 0; p = 0;
+    g(i, 1, n) {
+      scanf("%d", a + i);
+      f(j, p, p + a[i] - a[i - 1]) c[j] = j + 1;
+      c[p + a[i] - a[i - 1]] = -(p + a[i] - a[i - 1] + 1);
+      p = p + a[i] - a[i - 1] + 1;
+    }
+    int j = 0;
+    f(i, 0, p) {
+      if (c[i] > 0) sta[idx++] = c[i];
+      else {
+        num = sta[--idx];
+        num = (-c[i] - num) / 2 + 1;
+        b[j] = num; ++j;
+      }
+    }
+    f(i, 0, j - 1) printf("%d ", b[i]);
+    printf("%d\n", b[j - 1]);
   }
 
 #ifdef LOCAL

@@ -30,7 +30,6 @@ const double pi = acos(-1.0);
 const double EPS = 1e-8;
 const int MAXN = 100033;
 
-
 int main() {
 #ifdef LOCAL
   freopen("a.in", "r", stdin);

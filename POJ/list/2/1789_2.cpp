@@ -42,24 +42,23 @@ inline int calc(int a, int b) {
   return res;
 }
 int prim() {
-  int s = 0, m = 1;
+  int minc, res = 0, p;
   memset(vis, 0, sizeof vis);
-  int mn, p, ans = 0;
-  memset(lowc, 0x1f, sizeof lowc);
-  while (m != n) {
-    mn = oo;
-    f(i, 1, n) {
-      if (!vis[i] && lowc[i] > cost[s][i]) lowc[i] = cost[s][i];
-      if (!vis[i] && mn > lowc[i]) {
-        mn = lowc[i]; p = i;
+  vis[0] = 1;
+  f(i, 1, n) lowc[i] = cost[0][i];
+  f(i, 1, n) {
+    minc = oo; p = -1;
+    f(j, 0, n) {
+      if (!vis[j] && minc > lowc[j]) {
+        minc = lowc[j]; p = j;
       }
     }
-    ans += mn;
-    s = p;
-    vis[s] = 1;
-    ++m;
+    if (minc == oo) return -1;
+    res += minc;
+    vis[p] = 1;
+    f(j, 0, n) if (!vis[j] && lowc[j] > cost[p][j]) lowc[j] = cost[p][j];
   }
-  return ans;
+  return res;
 }
 int main() {
 #ifdef LOCAL

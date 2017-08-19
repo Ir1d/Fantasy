@@ -49,10 +49,7 @@ int prim() {
         mn = lowc[i]; p = i;
       }
     }
-    ans += mn;
-    s = p;
-    vis[s] = 1;
-    ++m;
+    s = p; vis[s] = 1; ans += mn; ++m;
   }
   return ans;
 }

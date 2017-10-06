@@ -264,7 +264,7 @@ void evaluate() {
   f(i, 0, k) {
     mx = 0.0;
     f(j, 0, k) if (j != i && clusters[i].elem.size() && clusters[j].elem.size()) {
-      mx = std::max(mx, (RSS[i] + RSS[j]) / getDis2(i, j));
+      mx = std::max(mx, (RSS[i] / clusters[i].elem.size() + RSS[j] / clusters[j].elem.size()) / getDis2(i, j));
     }
     db += mx;
   }

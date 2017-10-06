@@ -72,8 +72,10 @@ struct Cluster {
 std::map<std::string, int> M;
 std::map<int, std::string> V;
 
+double st, ed;
 std::string s;
 void read() {
+  st = clock();
   std::ios::sync_with_stdio(0);
   int num, x;
   // 8675 5168
@@ -243,22 +245,28 @@ void printRes() {
 }
 void evaluate() {
   fprintf(stderr, "# Evaluate results\n");
-  std::cout << "-------------\n";
-  std::cout << "Iteration time: " << iteration << "\n";
+  fprintf(stderr, "-------------\n");
+  // std::cout << "-------------\n";
+  fprintf(stderr, "Iteration time: %d\n", iteration);
+  // std::cout << "Iteration time: " << iteration << "\n";
   int a = 0, b = cnt;
   f(i, 0, k) {
     a = std::max(a, int(clusters[i].elem.size()));
     b = std::min(b, int(clusters[i].elem.size()));
   }
-  std::cout << "Max Cluster Size: " << a << "\n";
-  std::cout << "Min Cluster Size: " << b << "\n";
-  std::cout << "Rss: " << std::setprecision(6) << std::fixed << prev_RSS << "\n";
+  fprintf(stderr, "Max Cluster Size: %d\n", a);
+  fprintf(stderr, "Min Cluster Size: %d\n", b);
+  // std::cout << "Max Cluster Size: " << a << "\n";
+  // std::cout << "Min Cluster Size: " << b << "\n";
+  fprintf(stderr, "RSS: %.06lf\n", prev_RSS);
+  // std::cout << "Rss: " << std::setprecision(6) << std::fixed << prev_RSS << "\n";
   double sp = 0.0;
   f(i, 0, k) f(j, 0, i)  if (clusters[i].elem.size() && clusters[j].elem.size()) {
     sp += getDis2(i, j);
   }
   sp /= (k - 1.0) * k / 2.0;
-  std::cout << "sp: " << std::setprecision(6) << std::fixed << sp << "\n";
+  fprintf(stderr, "sp: %.06lf\n", sp);
+  // std::cout << "sp: " << std::setprecision(6) << std::fixed << sp << "\n";
   // fprintf(stderr, "Arrived\n");
   double db = 0.0, mx = 0.0;
   f(i, 0, k) {
@@ -269,7 +277,8 @@ void evaluate() {
     db += mx;
   }
   db /= k;
-  std::cout << "db: " << std::setprecision(6) << std::fixed << db << "\n";
+  fprintf(stderr, "db: %.06lf\n", db);
+  // std::cout << "db: " << std::setprecision(6) << std::fixed << db << "\n";
   // fprintf(stderr, "Arrived\n");
   // dvi complexity too high
   // double dvi = 0.0, mxx = 0.0;
@@ -284,6 +293,8 @@ void evaluate() {
   // // fprintf(stderr, "Arrived\n");
   // dvi = mx / mxx;
   // std::cout << "dvi: " << std::setprecision(6) << std::fixed << dvi << "\n";
+  ed = clock();
+  fprintf(stderr, "time used: %.06lf\n", (ed - st) / CLOCKS_PER_SEC);
 }
 int main(int argc, char *argv[]) {
 #ifdef LOCAL
@@ -295,13 +306,10 @@ int main(int argc, char *argv[]) {
   k = atoi(argv[1]);
   // fprintf(stderr, "%d\n", k);
   // return 0;
-  double st = clock();
   read();
   kmeans();
   printRes();
   evaluate();
-  double ed = clock();
-  fprintf(stderr, "time used: %.06lf\n", (ed - st) / CLOCKS_PER_SEC);
 
 #ifdef LOCAL
   fclose(stdin);

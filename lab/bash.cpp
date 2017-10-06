@@ -43,7 +43,7 @@ int main() {
   // std::string ss = "notify-send asdf";
   // system(ss);
   for (int i = 5; i <= 200; i += 5) {
-    printf("./kmeans %d < kmeans.data 2&> %d.out \n", i, i);
+    printf("./kmeans %d < kmeans.data 1> %d.out 2> %d.data\n", i, i, i);
   }
 
 #ifdef LOCAL

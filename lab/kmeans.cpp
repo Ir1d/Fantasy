@@ -136,11 +136,11 @@ double getDis2(int i, int j) {
     cos += clusters[i].centroid[w] * clusters[j].centroid[w];
   }
   // assert(word[i].norm * clusters[j].norm);
-  if (clusters[i].norm * clusters[j].norm) {
+  // if (clusters[i].norm * clusters[j].norm) {
     cos /= (clusters[i].norm * clusters[j].norm);
     return 2 - cos;
-  }
-  return 0;
+  // }
+  // return 0;
   // avoid -nan here.
 }
 double getDis3(int i, int j) {
@@ -254,7 +254,7 @@ void evaluate() {
   std::cout << "Min Cluster Size: " << b << "\n";
   std::cout << "Rss: " << std::setprecision(6) << std::fixed << prev_RSS << "\n";
   double sp = 0.0;
-  f(i, 0, k) f(j, 0, i) {
+  f(i, 0, k) f(j, 0, i)  if (clusters[i].elem.size() && clusters[j].elem.size()) {
     sp += getDis2(i, j);
   }
   sp /= (k - 1.0) * k / 2.0;
@@ -263,7 +263,7 @@ void evaluate() {
   double db = 0.0, mx = 0.0;
   f(i, 0, k) {
     mx = 0.0;
-    f(j, 0, k) if (j != i) {
+    f(j, 0, k) if (j != i && clusters[i].elem.size() && clusters[j].elem.size()) {
       mx = std::max(mx, (RSS[i] + RSS[j]) / getDis2(i, j));
     }
     db += mx;

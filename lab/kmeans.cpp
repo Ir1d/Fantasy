@@ -136,8 +136,12 @@ double getDis2(int i, int j) {
     cos += clusters[i].centroid[w] * clusters[j].centroid[w];
   }
   // assert(word[i].norm * clusters[j].norm);
-  cos /= (clusters[i].norm * clusters[j].norm);
-  return 2 - cos;
+  if (clusters[i].norm * clusters[j].norm) {
+    cos /= (clusters[i].norm * clusters[j].norm);
+    return 2 - cos;
+  }
+  return 0;
+  // avoid -nan here.
 }
 double getDis3(int i, int j) {
   // word[i].feature, word[j].feature

@@ -81,7 +81,7 @@ void read() {
   std::cin >> article >> cnt;
   // int cur = -1;
   // while (std::cin >> s) {
-  fprintf(stderr, "Starts reading----\n");
+  fprintf(stderr, "# Starts reading\n");
   f(cur, 0, cnt) {
     std::cin >> s;
     // if (s[0] == '-') ++cur;
@@ -95,6 +95,7 @@ void read() {
     }
     word[cur].calc();
   }
+  fprintf(stderr, "# Reading done\n");
   // fprintf(stderr, )
 }
 
@@ -102,7 +103,7 @@ int seeds[MAXNUMCLUSTER];
 void selectRandomSeeds() {
   srand(time(0));
   // std::cout << "Random Seeds: ";
-  // printf("Random Seeds: ");
+  fprintf(stderr, "# Generating random seeds\n");
   int *tee = new int[cnt];
   f(i, 0, cnt) tee[i] = i;
   int pos;
@@ -126,6 +127,26 @@ double getDis(int i, int j) {
   }
   // assert(word[i].norm * clusters[j].norm);
   cos /= (word[i].norm * clusters[j].norm);
+  return 2 - cos;
+}
+double getDis2(int i, int j) {
+  // word[i].feature, clusters[j].centroid
+  double cos = 0.0;
+  f(w, 0, article) {
+    cos += clusters[i].centroid[w] * clusters[j].centroid[w];
+  }
+  // assert(word[i].norm * clusters[j].norm);
+  cos /= (clusters[i].norm * clusters[j].norm);
+  return 2 - cos;
+}
+double getDis3(int i, int j) {
+  // word[i].feature, word[j].feature
+  double cos = 0.0;
+  f(w, 0, article) {
+    cos += word[i].feature[w] * word[j].feature[w];
+  }
+  // assert(word[i].norm * clusters[j].norm);
+  cos /= (word[i].norm * word[j].norm);
   return 2 - cos;
 }
 double prev_RSS;
@@ -196,12 +217,13 @@ void kmeans() {
     clusters[i].calc();
   }
   while (!converge()) {
-    fprintf(stderr, "Current iteration: %d\n", iteration++);
+    fprintf(stderr, " > Current iteration: %d\n", ++iteration);
     // std::cout << "iteration " << iteration << "\n";
     // printf("iteration: %d\n", iteration);
     reassign();
     update();
   }
+  fprintf(stderr, "# Converged, Generating results\n");
 }
 void printRes() {
   f(i, 0, k) {
@@ -215,6 +237,42 @@ void printRes() {
     std::cout << "\n";
   }
 }
+void evaluate() {
+  fprintf(stderr, "# Evaluate results\n");
+  std::cout << "-------------\n";
+  std::cout << "Rss: " << std::setprecision(6) << std::fixed << prev_RSS << "\n";
+  double sp = 0.0;
+  f(i, 0, k) f(j, 0, i) {
+    sp += getDis2(i, j);
+  }
+  sp /= (k - 1.0) * k / 2.0;
+  std::cout << "sp: " << std::setprecision(6) << std::fixed << sp << "\n";
+  // fprintf(stderr, "Arrived\n");
+  double db = 0.0, mx = 0.0;
+  f(i, 0, k) {
+    mx = 0.0;
+    f(j, 0, k) if (j != i) {
+      mx = std::max(mx, (RSS[i] + RSS[j]) / getDis2(i, j));
+    }
+    db += mx;
+  }
+  db /= k;
+  std::cout << "db: " << std::setprecision(6) << std::fixed << db << "\n";
+  // fprintf(stderr, "Arrived\n");
+  // dvi complexity too high
+  // double dvi = 0.0, mxx = 0.0;
+  // mx = 0.0;
+  // f(i, 0, cnt) f(j, 0, i) {
+  //   if (word[i].belong != word[j].belong) {
+  //     mx = std::max(mx, getDis3(i, j));
+  //   } else {
+  //     mxx = std::max(mxx, getDis3(i, j));
+  //   }
+  // }
+  // // fprintf(stderr, "Arrived\n");
+  // dvi = mx / mxx;
+  // std::cout << "dvi: " << std::setprecision(6) << std::fixed << dvi << "\n";
+}
 int main(int argc, char *argv[]) {
 #ifdef LOCAL
   freopen("a.in", "r", stdin);
@@ -225,9 +283,13 @@ int main(int argc, char *argv[]) {
   k = atoi(argv[1]);
   // fprintf(stderr, "%d\n", k);
   // return 0;
+  double st = clock();
   read();
   kmeans();
   printRes();
+  evaluate();
+  double ed = clock();
+  fprintf(stderr, "time used: %.06lf\n", (ed - st) / CLOCKS_PER_SEC);
 
 #ifdef LOCAL
   fclose(stdin);

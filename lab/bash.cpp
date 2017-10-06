@@ -42,8 +42,8 @@ int main() {
 
   // std::string ss = "notify-send asdf";
   // system(ss);
-  for (int i = 100; i <= 200; i += 5) {
-    printf("time ./kmeans %d < kmeans.data > %d.out 2>&1\n", i, i);
+  for (int i = 5; i <= 200; i += 5) {
+    printf("./kmeans %d < kmeans.data 2&> %d.out \n", i, i);
   }
 
 #ifdef LOCAL

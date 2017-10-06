@@ -1,21 +1,40 @@
-time ./kmeans 100 < kmeans.data > 100.out 2>&1
-time ./kmeans 105 < kmeans.data > 105.out 2>&1
-time ./kmeans 110 < kmeans.data > 110.out 2>&1
-time ./kmeans 115 < kmeans.data > 115.out 2>&1
-time ./kmeans 120 < kmeans.data > 120.out 2>&1
-time ./kmeans 125 < kmeans.data > 125.out 2>&1
-time ./kmeans 130 < kmeans.data > 130.out 2>&1
-time ./kmeans 135 < kmeans.data > 135.out 2>&1
-time ./kmeans 140 < kmeans.data > 140.out 2>&1
-time ./kmeans 145 < kmeans.data > 145.out 2>&1
-time ./kmeans 150 < kmeans.data > 150.out 2>&1
-time ./kmeans 155 < kmeans.data > 155.out 2>&1
-time ./kmeans 160 < kmeans.data > 160.out 2>&1
-time ./kmeans 165 < kmeans.data > 165.out 2>&1
-time ./kmeans 170 < kmeans.data > 170.out 2>&1
-time ./kmeans 175 < kmeans.data > 175.out 2>&1
-time ./kmeans 180 < kmeans.data > 180.out 2>&1
-time ./kmeans 185 < kmeans.data > 185.out 2>&1
-time ./kmeans 190 < kmeans.data > 190.out 2>&1
-time ./kmeans 195 < kmeans.data > 195.out 2>&1
-time ./kmeans 200 < kmeans.data > 200.out 2>&1
+./kmeans 5 < kmeans.data 2&> 5.out 
+./kmeans 10 < kmeans.data 2&> 10.out 
+./kmeans 15 < kmeans.data 2&> 15.out 
+./kmeans 20 < kmeans.data 2&> 20.out 
+./kmeans 25 < kmeans.data 2&> 25.out 
+./kmeans 30 < kmeans.data 2&> 30.out 
+./kmeans 35 < kmeans.data 2&> 35.out 
+./kmeans 40 < kmeans.data 2&> 40.out 
+./kmeans 45 < kmeans.data 2&> 45.out 
+./kmeans 50 < kmeans.data 2&> 50.out 
+./kmeans 55 < kmeans.data 2&> 55.out 
+./kmeans 60 < kmeans.data 2&> 60.out 
+./kmeans 65 < kmeans.data 2&> 65.out 
+./kmeans 70 < kmeans.data 2&> 70.out 
+./kmeans 75 < kmeans.data 2&> 75.out 
+./kmeans 80 < kmeans.data 2&> 80.out 
+./kmeans 85 < kmeans.data 2&> 85.out 
+./kmeans 90 < kmeans.data 2&> 90.out 
+./kmeans 95 < kmeans.data 2&> 95.out 
+./kmeans 100 < kmeans.data 2&> 100.out 
+./kmeans 105 < kmeans.data 2&> 105.out 
+./kmeans 110 < kmeans.data 2&> 110.out 
+./kmeans 115 < kmeans.data 2&> 115.out 
+./kmeans 120 < kmeans.data 2&> 120.out 
+./kmeans 125 < kmeans.data 2&> 125.out 
+./kmeans 130 < kmeans.data 2&> 130.out 
+./kmeans 135 < kmeans.data 2&> 135.out 
+./kmeans 140 < kmeans.data 2&> 140.out 
+./kmeans 145 < kmeans.data 2&> 145.out 
+./kmeans 150 < kmeans.data 2&> 150.out 
+./kmeans 155 < kmeans.data 2&> 155.out 
+./kmeans 160 < kmeans.data 2&> 160.out 
+./kmeans 165 < kmeans.data 2&> 165.out 
+./kmeans 170 < kmeans.data 2&> 170.out 
+./kmeans 175 < kmeans.data 2&> 175.out 
+./kmeans 180 < kmeans.data 2&> 180.out 
+./kmeans 185 < kmeans.data 2&> 185.out 
+./kmeans 190 < kmeans.data 2&> 190.out 
+./kmeans 195 < kmeans.data 2&> 195.out 
+./kmeans 200 < kmeans.data 2&> 200.out 

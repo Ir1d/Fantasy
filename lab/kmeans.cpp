@@ -240,6 +240,14 @@ void printRes() {
 void evaluate() {
   fprintf(stderr, "# Evaluate results\n");
   std::cout << "-------------\n";
+  std::cout << "Iteration time: " << iteration << "\n";
+  int a = 0, b = cnt;
+  f(i, 0, k) {
+    a = std::max(a, int(clusters[i].elem.size()));
+    b = std::min(b, int(clusters[i].elem.size()));
+  }
+  std::cout << "Max Cluster Size: " << a << "\n";
+  std::cout << "Min Cluster Size: " << b << "\n";
   std::cout << "Rss: " << std::setprecision(6) << std::fixed << prev_RSS << "\n";
   double sp = 0.0;
   f(i, 0, k) f(j, 0, i) {

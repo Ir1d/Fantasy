@@ -33,7 +33,7 @@ const double pi = acos(-1.0);
 const double EPS = 1e-8;
 const int MAXN = 100033;
 
-const int K = 200;
+const int K = 300;
 const double RSS_THRESHOLD = 1e-8;
 /*const*/ int MAX_ITERATION_NUM = 500;
 const int MAXNUMCLUSTER = 500;
@@ -65,7 +65,7 @@ struct Cluster {
       norm += centroid[i] * centroid[i];
     }
     norm = sqrt(norm);
-    assert(norm);
+    // assert(norm);
   }
 } clusters[233];
 
@@ -124,7 +124,7 @@ double getDis(int i, int j) {
   f(w, 0, article) {
     cos += word[i].feature[w] * clusters[j].centroid[w];
   }
-  assert(word[i].norm * clusters[j].norm);
+  // assert(word[i].norm * clusters[j].norm);
   cos /= (word[i].norm * clusters[j].norm);
   return 2 - cos;
 }

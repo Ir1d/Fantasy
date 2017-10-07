@@ -69,9 +69,6 @@ struct Cluster {
   }
 } clusters[233];
 
-std::map<std::string, int> M;
-std::map<int, std::string> V;
-
 double st, ed;
 std::string s;
 void read() {

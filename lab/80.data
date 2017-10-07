@@ -1,0 +1,30 @@
+# Starts reading
+# Reading done
+# Generating random seeds
+ > Current iteration: 1
+ > Current iteration: 2
+ > Current iteration: 3
+ > Current iteration: 4
+ > Current iteration: 5
+ > Current iteration: 6
+ > Current iteration: 7
+ > Current iteration: 8
+ > Current iteration: 9
+ > Current iteration: 10
+ > Current iteration: 11
+ > Current iteration: 12
+ > Current iteration: 13
+ > Current iteration: 14
+ > Current iteration: 15
+ > Current iteration: 16
+ > Current iteration: 17
+# Converged, Generating results
+# Evaluate results
+-------------
+Iteration time: 17
+Max Cluster Size: 452
+Min Cluster Size: 19
+RSS: 8999.933570
+sp: 1.993915
+db: 1.918540
+time used: 70.230000

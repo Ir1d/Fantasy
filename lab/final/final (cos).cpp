@@ -122,40 +122,37 @@ void selectRandomSeeds() {
 }
 double getDis(int i, int j) {
   // word[i].feature, clusters[j].centroid
-  double dis = 0.0;
+  double cos = 0.0;
   f(w, 0, article) {
-    dis += pow(word[i].feature[w] - clusters[j].centroid[w], 2);
-    // cos += word[i].feature[w] * clusters[j].centroid[w];
+    cos += word[i].feature[w] * clusters[j].centroid[w];
   }
   // assert(word[i].norm * clusters[j].norm);
-  // cos /= (word[i].norm * clusters[j].norm);
-  return sqrt(dis);
+  cos /= (word[i].norm * clusters[j].norm);
+  return 2 - cos;
 }
 double getDis2(int i, int j) {
   // word[i].feature, clusters[j].centroid
-  double dis = 0.0;
+  double cos = 0.0;
   f(w, 0, article) {
-    dis += pow(clusters[i].centroid[w] - clusters[j].centroid[w], 2); 
-    // dis += clusters[i].centroid[w] * clusters[j].centroid[w];
+    cos += clusters[i].centroid[w] * clusters[j].centroid[w];
   }
   // assert(word[i].norm * clusters[j].norm);
   // if (clusters[i].norm * clusters[j].norm) {
-    // dis /= (clusters[i].norm * clusters[j].norm);
-    return sqrt(dis);
+    cos /= (clusters[i].norm * clusters[j].norm);
+    return 2 - cos;
   // }
   // return 0;
   // avoid -nan here.
 }
 double getDis3(int i, int j) {
   // word[i].feature, word[j].feature
-  double dis = 0.0;
+  double cos = 0.0;
   f(w, 0, article) {
-    dis += pow(word[i].feature[w] - word[j].feature[w], 2);
-    // cos += word[i].feature[w] * word[j].feature[w];
+    cos += word[i].feature[w] * word[j].feature[w];
   }
   // assert(word[i].norm * clusters[j].norm);
-  // cos /= (word[i].norm * word[j].norm);
-  return sqrt(dis);
+  cos /= (word[i].norm * word[j].norm);
+  return 2 - cos;
 }
 double prev_RSS;
 double RSS[K];

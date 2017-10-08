@@ -50,7 +50,7 @@ int main() {
     std::cin >> b;
     f(j, 0, b) std::cin >> b;
   }
-  freopen("q2.in", "r", stdin);
+  freopen("answer.in", "r", stdin);
   f(i, 0, b) {
     std::cout << s[i] << "\n";
     gets(ss);

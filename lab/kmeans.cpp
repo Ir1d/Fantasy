@@ -30,12 +30,12 @@ typedef long double real;
 const double INF = 1e100;
 const int oo = ~0u >> 2;
 const double pi = acos(-1.0);
-const double EPS = 1e-8;
+const double EPS = 1e-4;
 const int MAXN = 100033;
 
 const int K = 300;
-const double RSS_THRESHOLD = 1e-8;
-/*const*/ int MAX_ITERATION_NUM = 500;
+const double RSS_THRESHOLD = 1e-4;
+/*const*/ int MAX_ITERATION_NUM = 50;
 const int MAXNUMCLUSTER = 500;
 
 int article, cnt, iteration, k;

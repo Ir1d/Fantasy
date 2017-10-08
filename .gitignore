@@ -5,3 +5,4 @@ tee
 *.out
 *.res
 *.zip
+octave-workspace

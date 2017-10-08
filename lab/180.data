@@ -506,9 +506,9 @@
 # Evaluate results
 -------------
 Iteration time: 501
-Max Cluster Size: 284
-Min Cluster Size: 2
-RSS: 8654.476172
-sp: 1.994260
-db: 1.879844
-time used: 84.592704
+Max Cluster Size: 279
+Min Cluster Size: 6
+RSS: 8625.158991
+sp: 1.993914
+db: 1.891707
+time used: 456.622704

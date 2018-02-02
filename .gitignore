@@ -6,3 +6,4 @@ tee
 *.res
 *.zip
 octave-workspace
+mlpy

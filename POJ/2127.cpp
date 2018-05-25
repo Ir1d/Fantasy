@@ -51,7 +51,7 @@ void solve() {
         dp[i][j] = mx + 1;
         pre[i][j] = pos;
       } else {
-        dp[i][j] = std::max(dp[i][j], dp[i - 1][j]);
+        dp[i][j] = dp[i - 1][j];
       }
       if (b[j] < a[i] && mx < dp[i - 1][j]) {
         mx = dp[i - 1][j];

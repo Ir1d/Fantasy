@@ -54,6 +54,10 @@ bool dfs(int n) {
       a[i] = x / y; a[j] = a[n - 1];
       ctf |= dfs(n - 1);
     }
+    if (x && y % x == 0) {
+      a[i] = y / x; a[j] = a[n - 1];
+      ctf |= dfs(n - 1);
+    }
     a[i] = x; a[n - 1] = z; a[j] = y;
     if (ctf) return 1;
   }

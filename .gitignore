@@ -7,3 +7,4 @@ tee
 *.zip
 octave-workspace
 mlpy
+.gdb_history
